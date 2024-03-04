@@ -20,7 +20,6 @@ const BookForm = () => {
       setTitle("");
       setAuthor("");
       setDescription("");
-      alert("Book added successfully!");
     } catch (error) {
       console.error("Error adding book:", error);
       alert("Failed to add book!");
