@@ -4,7 +4,7 @@ from pydantic import BaseModel
 from pymongo import MongoClient
 from bson import ObjectId
 from urllib.parse import quote_plus
-from typing import List
+# from typing import List
 # MongoDB connection setup
 username = "aditya_notebook"
 password = "aditya@9916"
@@ -21,9 +21,9 @@ app = FastAPI()
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Update this to allow requests from specific origins
+    allow_origins=["*"],  # Allow requests only from this origin
     allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "DELETE"], 
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
     allow_headers=["*"],
 )
 
@@ -55,16 +55,11 @@ async def create_book(book: Book):
 
 @app.get("/books/all")
 async def read_books():
-    try:
-        # Query the collection to retrieve all books
-        books = list(collection.find())
-        if books:
-            return books
-        else:
-            raise HTTPException(status_code=404, detail="No books found")
-    except Exception as e:
-        # Handle any unexpected exceptions, like database connection issues
-        raise HTTPException(status_code=500, detail="Internal Server Error")
+    # Query the collection to retrieve all books
+    books = list(collection.find())
+    if books:
+        return books 
+    raise HTTPException(status_code=404, detail="No books found")
 
 
 # Endpoint to update a book note by its ID
