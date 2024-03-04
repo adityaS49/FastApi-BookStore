@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:8000';
+const BASE_URL = 'https://fastapi-bookstore-6.onrender.com';
 
 const ApiService = {
   getBooks: async () => {
